@@ -2,8 +2,8 @@ import { faker } from "@faker-js/faker";
 import omit from "lodash.omit";
 import RandExp from "randexp";
 
-import { RespondToAuthChallengeResponse } from "../../types";
-import { mockRespondToAuthChallengeResponseFactory } from "../mocks/factories";
+import { mockRespondToAuthChallengeResponseFactory } from "@/__tests__/mocks/factories";
+import { RespondToAuthChallengeResponse } from "@/types";
 
 const { ChallengeParameters } = mockRespondToAuthChallengeResponseFactory();
 
@@ -65,7 +65,10 @@ export const positiveRespondToAuthChallengeResponses: Record<string, RespondToAu
     ChallengeParameters: {
       ...ChallengeParameters,
       // 1 / 62 chance to return "0" which will trigger a AbortOnZeroBSrpError, so ban the char
-      SRP_B: faker.random.alphaNumeric(1, { casing: "lower", bannedChars: "0" }),
+      SRP_B: faker.random.alphaNumeric(1, {
+        casing: "lower",
+        bannedChars: "0",
+      }),
     },
   }),
   largeBLong: mockRespondToAuthChallengeResponseFactory({
