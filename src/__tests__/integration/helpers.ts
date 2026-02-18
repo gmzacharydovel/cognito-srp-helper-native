@@ -13,7 +13,7 @@ type SignupOptionsV2 = {
 
 export const signupV2 = async (options: SignupOptionsV2) => {
   const { username, password, cognitoIdentityServiceProvider, clientId, secretId } = options;
-  const secretHash = createSecretHash(username, clientId, secretId);
+  const secretHash = await createSecretHash(username, clientId, secretId);
 
   return cognitoIdentityServiceProvider
     .signUp({
@@ -35,7 +35,7 @@ type SignupOptionsV3 = {
 
 export const signupV3 = async (options: SignupOptionsV3) => {
   const { username, password, cognitoIdentityProviderClient, clientId, secretId } = options;
-  const secretHash = createSecretHash(username, clientId, secretId);
+  const secretHash = await createSecretHash(username, clientId, secretId);
 
   await cognitoIdentityProviderClient
     .send(

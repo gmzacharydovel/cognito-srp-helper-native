@@ -22,7 +22,10 @@ export const positiveInitiateAuthResponseWithNewDevice: Record<string, InitiateA
     ChallengeParameters: {
       ...ChallengeParameters,
       // 1 / 62 chance to return "0" which will trigger a AbortOnZeroBSrpError, so ban the char
-      SRP_B: faker.random.alphaNumeric(1, { casing: "lower", bannedChars: "0" }),
+      SRP_B: faker.random.alphaNumeric(1, {
+        casing: "lower",
+        bannedChars: "0",
+      }),
     },
   }),
   largeBLong: mockInitiateAuthResponseWithNewDeviceFactory({

@@ -15,9 +15,9 @@ describe("wrapAuthChallenge", () => {
   describe("positive", () => {
     it.each(Object.values(positiveSessions))(
       "should create the correct RespondToAuthChallengeRequest: session %#",
-      (session) => {
+      async (session) => {
         const request = mockRespondToAuthChallengeRequestFactory();
-        const srpRequest = wrapAuthChallenge(session, request);
+        const srpRequest = await wrapAuthChallenge(session, request);
         expect(srpRequest).toMatchObject<RespondToAuthChallengeRequest>({
           ...request,
           ChallengeResponses: {
@@ -32,9 +32,9 @@ describe("wrapAuthChallenge", () => {
 
     it.each(Object.values(positiveRequests))(
       "should create the correct RespondToAuthChallengeRequest: request %#",
-      (request) => {
+      async (request) => {
         const session = mockSrpSessionSignedFactory();
-        const srpRequest = wrapAuthChallenge(session, request);
+        const srpRequest = await wrapAuthChallenge(session, request);
         expect(srpRequest).toMatchObject<RespondToAuthChallengeRequest>({
           ...request,
           ChallengeResponses: {
@@ -49,9 +49,9 @@ describe("wrapAuthChallenge", () => {
 
     it.each(Object.values(positiveSessions))(
       "should create the correct AdminRespondToAuthChallengeRequest: session %#",
-      (session) => {
+      async (session) => {
         const request = mockAdminRespondToAuthChallengeRequestFactory();
-        const srpRequest = wrapAuthChallenge(session, request);
+        const srpRequest = await wrapAuthChallenge(session, request);
         expect(srpRequest).toMatchObject<RespondToAuthChallengeRequest>({
           ...request,
           ChallengeResponses: {
@@ -66,9 +66,9 @@ describe("wrapAuthChallenge", () => {
 
     it.each(Object.values(adminPositiveRequests))(
       "should create the correct AdminRespondToAuthChallengeRequest: request %#",
-      (request) => {
+      async (request) => {
         const session = mockSrpSessionSignedFactory();
-        const srpRequest = wrapAuthChallenge(session, request);
+        const srpRequest = await wrapAuthChallenge(session, request);
         expect(srpRequest).toMatchObject<RespondToAuthChallengeRequest>({
           ...request,
           ChallengeResponses: {
