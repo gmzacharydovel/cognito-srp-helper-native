@@ -1,4 +1,4 @@
-import base64FromUint8Array from "./from-uint8-array";
+import base64FromUint8Array from "./from-uint8array";
 
 /**
  * Generates a random base64 string of the specified size in bytes.

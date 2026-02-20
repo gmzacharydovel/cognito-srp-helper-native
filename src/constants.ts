@@ -1,5 +1,5 @@
 import bigIntFromHex from "./utils/bigint/from-hex";
-import uint8ArrayFromString from "./utils/uint8-array/from-string";
+import uint8ArrayFromString from "./utils/uint8array/from-string";
 
 export const INFO_BITS = new Uint8Array([...uint8ArrayFromString("Caldera Derived Key"), 0x01]);
 

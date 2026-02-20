@@ -7,4 +7,4 @@ export * from "./utils/base64";
 export * from "./utils/bigint";
 export * from "./utils/crypto";
 export * from "./utils/hex";
-export * from "./utils/uint8-array";
+export * from "./utils/uint8array";

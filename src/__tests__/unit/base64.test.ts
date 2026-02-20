@@ -1,6 +1,6 @@
 import { base64FromUint8Array, generateRandomBase64 } from "@/utils/base64";
 
-describe("bigint", () => {
+describe("base64", () => {
   describe("base64FromUint8Array", () => {
     it("makes no change to a positive number", async () => {
       expect(base64FromUint8Array(new Uint8Array(["0".charCodeAt(0)]))).toEqual(btoa("0"));

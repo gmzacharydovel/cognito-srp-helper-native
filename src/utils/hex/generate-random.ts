@@ -1,4 +1,4 @@
-import hexFromUint8Array from "./from-uint8-array";
+import hexFromUint8Array from "./from-uint8array";
 
 /**
  * Generates a random hex string of the specified size.
