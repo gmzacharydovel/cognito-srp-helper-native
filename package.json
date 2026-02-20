@@ -4,6 +4,9 @@
   "description": "A helper for SRP authentication in AWS Cognito",
   "author": "Simon McAllister",
   "license": "Apache-2.0",
+  "engines" : {
+    "node" : ">=25.0.0"
+  },
   "private": false,
   "repository": "https://github.com/simonmcallister0210/cognito-srp-helper",
   "homepage": "https://github.com/simonmcallister0210/cognito-srp-helper",
@@ -43,10 +46,10 @@
     "lint": "npm run lint:ts && npm run lint:eslint",
     "lint:eslint": "eslint -c .eslintrc.cjs src/**",
     "lint:ts": "tsc --noEmit -p tsconfig.json",
-    "test": "jest -c .jestrc.cjs",
+    "test": "jest -c jest.config.mjs",
     "test:clear": "jest --clear-cache",
-    "test:integration": "jest -c .jestrc.cjs src/__tests__/integration",
-    "test:unit": "jest -c .jestrc.cjs src/__tests__/unit"
+    "test:integration": "jest -c jest.config.mjs src/__tests__/integration",
+    "test:unit": "jest -c jest.config.mjs src/__tests__/unit"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -81,9 +84,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.433.0",
-    "@types/crypto-js": "3.1.47",
-    "@types/jsbn": "1.2.30",
-    "@types/node": "^18.11.11",
+    "@types/node": "^25.3.0",
     "bigint-mod-arith": "^3.3.1"
   },
   "overrides": {

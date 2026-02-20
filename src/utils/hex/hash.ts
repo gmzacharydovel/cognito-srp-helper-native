@@ -1,6 +1,6 @@
-import hashUint8Array from "../uint8-array/hash";
+import hashUint8Array from "@/utils/uint8-array/hash";
 
-import uint8ArrayFromHex from "./../uint8-array/from-hex";
+import uint8ArrayFromHex from "@/utils/uint8-array/from-hex";
 
 /**
  * Calculate a hash from a hex string

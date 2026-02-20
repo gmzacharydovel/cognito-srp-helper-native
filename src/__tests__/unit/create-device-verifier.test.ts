@@ -1,14 +1,14 @@
 const bigIntGenerateRandomModule = { __esModule: true, default: jest.fn(() => "big int unset") };
 const base64GenerateRandomModule = { __esModule: true, default: jest.fn(() => "base64 unset") };
 
-jest.mock("../../utils/hex/generate-random", () => bigIntGenerateRandomModule);
+jest.mock("@/utils/hex/generate-random", () => bigIntGenerateRandomModule);
 
-jest.mock("../../utils/base64/generate-random", () => base64GenerateRandomModule);
+jest.mock("@/utils/base64/generate-random", () => base64GenerateRandomModule);
 
-import { createDeviceVerifier } from "../../cognito-srp-helper";
-import { deviceRandomPassword, deviceSaltBytes } from "../mocks/data";
-import { mockDeviceVerifierFactory, mockInitiateAuthResponseWithNewDeviceFactory } from "../mocks/factories";
-import { positiveInitiateAuthResponseWithNewDevice as positiveResponses } from "../test-cases";
+import { createDeviceVerifier } from "@/cognito-srp-helper";
+import { deviceRandomPassword, deviceSaltBytes } from "@/__tests__/mocks/data";
+import { mockDeviceVerifierFactory, mockInitiateAuthResponseWithNewDeviceFactory } from "@/__tests__/mocks/factories";
+import { positiveInitiateAuthResponseWithNewDevice as positiveResponses } from "@/__tests__/test-cases";
 
 describe("createDeviceVerifier", () => {
   beforeEach(() => {

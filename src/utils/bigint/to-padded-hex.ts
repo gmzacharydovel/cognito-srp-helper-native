@@ -1,4 +1,4 @@
-import { ONE } from "../../constants";
+import { ONE } from "@/constants";
 
 import absBigInt from "./abs";
 import bigIntFromHex from "./from-hex";

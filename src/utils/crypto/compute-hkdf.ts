@@ -1,4 +1,4 @@
-import uint8ArrayFromHex from "../uint8-array/from-hex";
+import uint8ArrayFromHex from "@/utils/uint8-array/from-hex";
 
 import computeHmacSha256 from "./compute-hmac-sha256";
 

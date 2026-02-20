@@ -1,4 +1,4 @@
-import generateRandomHex from "../hex/generate-random";
+import generateRandomHex from "@/utils/hex/generate-random";
 
 import bigIntFromString from "./from-string";
 

@@ -1,4 +1,4 @@
-import hexFromUint8Array from "../hex/from-uint8-array";
+import hexFromUint8Array from "@/utils/hex/from-uint8-array";
 
 /**
  * Hash a Uint8Array using SHA-256 and return the result as a hexadecimal string.

@@ -10,7 +10,7 @@ const base64GenerateRandomModule = {
     return "0";
   }),
 };
-const modPowActual = jest.requireActual("../../utils/bigint/mod-pow");
+const modPowActual = jest.requireActual("@/utils/bigint/mod-pow");
 const modPowModule = {
   __esModule: true,
   default: jest.fn((...args) => {
@@ -18,16 +18,16 @@ const modPowModule = {
   }),
 };
 
-jest.mock("../../utils/hex/generate-random", () => bigIntGenerateRandomModule);
+jest.mock("@/utils/hex/generate-random", () => bigIntGenerateRandomModule);
 
-jest.mock("../../utils/base64/generate-random", () => base64GenerateRandomModule);
+jest.mock("@/utils/base64/generate-random", () => base64GenerateRandomModule);
 
-jest.mock("../../utils/bigint/mod-pow", () => modPowModule);
+jest.mock("@/utils/bigint/mod-pow", () => modPowModule);
 
-import { createSrpSession } from "../../cognito-srp-helper";
-import { AbortOnZeroASrpError, AbortOnZeroSrpError } from "../../errors";
-import { mockCredentialsFactory, mockSrpSessionFactory } from "../mocks/factories";
-import { positiveCredentials, positiveTimestamps } from "../test-cases";
+import { createSrpSession } from "@/cognito-srp-helper";
+import { AbortOnZeroASrpError, AbortOnZeroSrpError } from "@/errors";
+import { mockCredentialsFactory, mockSrpSessionFactory } from "@/__tests__/mocks/factories";
+import { positiveCredentials, positiveTimestamps } from "@/__tests__/test-cases";
 
 describe("createSrpSession", () => {
   describe("positive", () => {

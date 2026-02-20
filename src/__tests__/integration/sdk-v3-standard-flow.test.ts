@@ -17,7 +17,7 @@ import {
   signSrpSession,
   wrapAuthChallenge,
   wrapInitiateAuth,
-} from "../../cognito-srp-helper";
+} from "@/cognito-srp-helper";
 
 import { signupV3 } from "./helpers";
 
