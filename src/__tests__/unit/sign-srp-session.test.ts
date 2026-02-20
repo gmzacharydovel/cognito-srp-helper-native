@@ -1,3 +1,13 @@
+import {
+  mockInitiateAuthResponseFactory,
+  mockSrpSessionFactory,
+  mockSrpSessionSignedFactory,
+} from "@/__tests__/mocks/factories";
+import {
+  negativeInitiateAuthResponses as negativeResponses,
+  positiveInitiateAuthResponses as positiveResponses,
+  positiveSrpSessionsSigned as positiveSessions,
+} from "@/__tests__/test-cases";
 import { signSrpSession } from "@/cognito-srp-helper";
 import {
   AbortOnZeroBSrpError,
@@ -10,16 +20,6 @@ import {
   SignSrpSessionError,
 } from "@/errors";
 import * as utils from "@/utils";
-import {
-  mockInitiateAuthResponseFactory,
-  mockSrpSessionFactory,
-  mockSrpSessionSignedFactory,
-} from "@/__tests__/mocks/factories";
-import {
-  negativeInitiateAuthResponses as negativeResponses,
-  positiveInitiateAuthResponses as positiveResponses,
-  positiveSrpSessionsSigned as positiveSessions,
-} from "@/__tests__/test-cases";
 
 const { ChallengeParameters } = mockInitiateAuthResponseFactory();
 

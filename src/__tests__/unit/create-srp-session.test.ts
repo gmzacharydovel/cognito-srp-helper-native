@@ -24,10 +24,10 @@ jest.mock("@/utils/base64/generate-random", () => base64GenerateRandomModule);
 
 jest.mock("@/utils/bigint/mod-pow", () => modPowModule);
 
-import { createSrpSession } from "@/cognito-srp-helper";
-import { AbortOnZeroASrpError, AbortOnZeroSrpError } from "@/errors";
 import { mockCredentialsFactory, mockSrpSessionFactory } from "@/__tests__/mocks/factories";
 import { positiveCredentials, positiveTimestamps } from "@/__tests__/test-cases";
+import { createSrpSession } from "@/cognito-srp-helper";
+import { AbortOnZeroASrpError, AbortOnZeroSrpError } from "@/errors";
 
 describe("createSrpSession", () => {
   describe("positive", () => {

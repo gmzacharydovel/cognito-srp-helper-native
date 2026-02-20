@@ -1,5 +1,3 @@
-import { wrapAuthChallenge } from "@/cognito-srp-helper";
-import { RespondToAuthChallengeRequest } from "@/types";
 import {
   mockAdminRespondToAuthChallengeRequestFactory,
   mockRespondToAuthChallengeRequestFactory,
@@ -10,6 +8,8 @@ import {
   positiveRespondToAuthChallengeRequests as positiveRequests,
   positiveSrpSessionsSigned as positiveSessions,
 } from "@/__tests__/test-cases";
+import { wrapAuthChallenge } from "@/cognito-srp-helper";
+import { RespondToAuthChallengeRequest } from "@/types";
 
 describe("wrapAuthChallenge", () => {
   describe("positive", () => {

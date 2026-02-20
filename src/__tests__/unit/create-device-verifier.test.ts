@@ -5,10 +5,10 @@ jest.mock("@/utils/hex/generate-random", () => bigIntGenerateRandomModule);
 
 jest.mock("@/utils/base64/generate-random", () => base64GenerateRandomModule);
 
-import { createDeviceVerifier } from "@/cognito-srp-helper";
 import { deviceRandomPassword, deviceSaltBytes } from "@/__tests__/mocks/data";
 import { mockDeviceVerifierFactory, mockInitiateAuthResponseWithNewDeviceFactory } from "@/__tests__/mocks/factories";
 import { positiveInitiateAuthResponseWithNewDevice as positiveResponses } from "@/__tests__/test-cases";
+import { createDeviceVerifier } from "@/cognito-srp-helper";
 
 describe("createDeviceVerifier", () => {
   beforeEach(() => {
