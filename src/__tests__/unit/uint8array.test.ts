@@ -29,6 +29,7 @@ describe("uint8array", () => {
 
   describe("hashUint8Array", () => {
     it("works", async () => {
+      // Verified using https://emn178.github.io/online-tools/sha256.html
       const value = await hashUint8Array(
         new Uint8Array(["t".charCodeAt(0), "e".charCodeAt(0), "s".charCodeAt(0), "t".charCodeAt(0)]),
       );
