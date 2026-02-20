@@ -259,8 +259,7 @@ export const signSrpSessionWithDevice = async (
 
   const deviceHash = await createDeviceHash(deviceKey, deviceRandomPassword, deviceGroupKey);
 
-  const u = await calculateU(largeA, largeB);
-  const x = await calculateX(salt, deviceHash);
+  const [u, x] = await Promise.all([calculateU(largeA, largeB), calculateX(salt, deviceHash)]);
   const s = await calculateS(x, largeB, smallA, u);
   const hkdfKey = await computeHkdf({ ikm: s, salt: u, info: INFO_BITS });
   const message = new Uint8Array([
