@@ -4,16 +4,16 @@
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "types": ["jest"],
     "lib": ["esnext", "dom"],
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "rootDir": "src/",
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": ".",
     "paths": {
-        "@/*": ["src/*"]
+        "@/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts"]

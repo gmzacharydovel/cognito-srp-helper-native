@@ -12,7 +12,6 @@ export default {
   // collectCoverage: true,
   // coverageDirectory: "__tests__/coverage/",
   roots: ['<rootDir>'],
-  modulePaths: [compilerOptions.baseUrl],
   transform: {
     "^.+\\.tsx?$": [
       "ts-jest",

@@ -4,8 +4,8 @@
   "description": "A helper for SRP authentication in AWS Cognito",
   "author": "Simon McAllister",
   "license": "Apache-2.0",
-  "engines" : {
-    "node" : ">=25.0.0"
+  "engines": {
+    "node": ">=25.0.0"
   },
   "private": false,
   "repository": "https://github.com/simonmcallister0210/cognito-srp-helper",
@@ -80,7 +80,7 @@
     "randexp": "^0.5.3",
     "totp-generator": "^1.0.0",
     "ts-jest": "^29.0.3",
-    "typescript": "^4.8.4"
+    "typescript": "^6.0.0-beta"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.433.0",

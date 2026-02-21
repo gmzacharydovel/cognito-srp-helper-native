@@ -17,11 +17,8 @@ describe("hex", () => {
 
   describe("generateRandomHex", () => {
     beforeEach(() => {
-      jest.spyOn(globalThis.crypto, "getRandomValues").mockImplementation((array: ArrayBufferView | null) => {
-        if (array) {
-          return new Uint8Array([array.buffer.byteLength]);
-        }
-        return null;
+      jest.spyOn(globalThis.crypto, "getRandomValues").mockImplementation((array) => {
+        return new Uint8Array([array.buffer.byteLength]);
       });
     });
 

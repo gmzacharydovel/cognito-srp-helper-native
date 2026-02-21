@@ -9,11 +9,8 @@ describe("base64", () => {
 
   describe("generateRandomBase64", () => {
     beforeEach(() => {
-      jest.spyOn(globalThis.crypto, "getRandomValues").mockImplementation((array: ArrayBufferView | null) => {
-        if (array) {
-          return new TextEncoder().encode(array.buffer.byteLength.toString());
-        }
-        return null;
+      jest.spyOn(globalThis.crypto, "getRandomValues").mockImplementation((array) => {
+        return new TextEncoder().encode(array.buffer.byteLength.toString());
       });
     });
 
