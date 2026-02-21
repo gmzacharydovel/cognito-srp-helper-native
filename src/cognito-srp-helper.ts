@@ -28,7 +28,7 @@ import {
   generateRandomBase64,
   generateRandomBigInt,
   hashHex,
-  hashUint8Array,
+  hashString,
   modPowBigInt,
   uint8ArrayFromBase64,
   uint8ArrayFromHex,
@@ -74,9 +74,7 @@ const calculateS = async (x: bigint, largeB: bigint, smallA: bigint, u: bigint):
 };
 
 const calculateX = async (salt: bigint, usernamePasswordHash: string): Promise<bigint> => {
-  const hashUint8Array = await hashHex(bigIntToPaddedHex(salt) + usernamePasswordHash);
-
-  return bigIntFromHex(hashUint8Array);
+  return bigIntFromHex(await hashHex(bigIntToPaddedHex(salt) + usernamePasswordHash));
 };
 
 const createTimestamp = (): string => {
@@ -113,14 +111,14 @@ export const createSecretHash = async (userId: string, clientId: string, secretI
 export const createPasswordHash = async (userId: string, password: string, poolId: string): Promise<string> => {
   const poolIdAbbr = poolId.split("_")[1];
   const usernamePassword = `${poolIdAbbr}${userId}:${password}`;
-  const passwordHash = await hashUint8Array(uint8ArrayFromString(usernamePassword));
+  const passwordHash = await hashString(usernamePassword);
 
   return passwordHash;
 };
 
 const createDeviceHash = async (deviceKey: string, password: string, deviceGroupKey: string): Promise<string> => {
   const devicePassword = `${deviceGroupKey}${deviceKey}:${password}`;
-  const deviceHash = await hashUint8Array(uint8ArrayFromString(devicePassword));
+  const deviceHash = await hashString(devicePassword);
 
   return deviceHash;
 };
@@ -209,7 +207,7 @@ export const signSrpSession = async (
     ...uint8ArrayFromString(poolIdAbbr),
     ...uint8ArrayFromString(userIdForSrp),
     ...(() => {
-      // NOTE: For some reason some of the tests don't have vaid base64
+      // NOTE: For some reason some of the tests don't have valid base64
       // Does this exist only for thie tests?
       try {
         return uint8ArrayFromBase64(secret);
@@ -266,7 +264,7 @@ export const signSrpSessionWithDevice = async (
     ...uint8ArrayFromString(deviceGroupKey),
     ...uint8ArrayFromString(deviceKey),
     ...(() => {
-      // NOTE: For some reason some of the tests don't have vaid base64
+      // NOTE: For some reason some of the tests don't have valid base64
       // Does this exist only for thie tests?
       try {
         return uint8ArrayFromBase64(secret);

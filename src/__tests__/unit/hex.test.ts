@@ -1,8 +1,4 @@
-import {
-  hexFromUint8Array,
-  generateRandomHex,
-  hashHex
-} from "@/utils/hex";
+import { generateRandomHex, hashHex, hexFromUint8Array } from "@/utils/hex";
 
 describe("hex", () => {
   describe("hexFromUint8Array", () => {
@@ -39,9 +35,7 @@ describe("hex", () => {
   describe("hashHex", () => {
     // Verified using https://emn178.github.io/online-tools/sha256.html
     it("works", async () => {
-      const value = await hashHex(
-        "0f"
-      );
+      const value = await hashHex("0f");
       await expect(value).toEqual("dc0e9c3658a1a3ed1ec94274d8b19925c93e1abb7ddba294923ad9bde30f8cb8");
     });
   });
