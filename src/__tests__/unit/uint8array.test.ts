@@ -14,8 +14,20 @@ describe("uint8array", () => {
       expect(uint8ArrayFromHex("f")).toEqual(new Uint8Array([15]));
     });
 
-    it("works with two digit ", async () => {
-      expect(uint8ArrayFromHex("11")).toEqual(new Uint8Array([17]));
+    it("works with two digits", async () => {
+      expect(uint8ArrayFromHex("1f")).toEqual(new Uint8Array([31]));
+    });
+
+    it("works with four digits", async () => {
+      expect(uint8ArrayFromHex("1f1f")).toEqual(new Uint8Array([31, 31]));
+    });
+
+    it("works with three digits", async () => {
+      expect(uint8ArrayFromHex("f1f")).toEqual(new Uint8Array([15, 31]));
+    });
+
+    it("works with three digits and a zero", async () => {
+      expect(uint8ArrayFromHex("0f1f")).toEqual(new Uint8Array([15, 31]));
     });
   });
 

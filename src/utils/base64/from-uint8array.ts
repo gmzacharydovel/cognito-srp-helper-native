@@ -5,13 +5,6 @@
  */
 const base64FromUint8Array = (value: Uint8Array): string => {
   return value.toBase64();
-  //const buffer: string[] = [];
-  //buffer.length = value.length;
-
-  //for (let i = 0; i < value.length; i++) {
-  //  buffer.push(String.fromCharCode(value[i]));
-  //}
-  //return btoa(buffer.join(""));
 };
 
 export default base64FromUint8Array;
