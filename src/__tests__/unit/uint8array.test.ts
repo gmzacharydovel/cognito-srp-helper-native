@@ -29,6 +29,15 @@ describe("uint8array", () => {
     it("works with three digits and a zero", async () => {
       expect(uint8ArrayFromHex("0f1f")).toEqual(new Uint8Array([15, 31]));
     });
+
+    //it("has acceptable speed", async () => {
+    //  const now = performance.now();
+    //  for (let i = 0; i < 1_000_000; i++) {
+    //    uint8ArrayFromHex("0f1f");
+    //  }
+    //  const end = performance.now();
+    //  console.log(`Time taken: ${end - now}ms`); // Currently 504.37291599999935ms
+    //});
   });
 
   describe("uint8arrayFromBase64", () => {
