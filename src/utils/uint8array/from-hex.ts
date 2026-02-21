@@ -5,6 +5,7 @@
  * @returns A uint8 array from the parsed hex string.
  */
 const unit8ArrayFromHex = (value: string): Uint8Array => {
+  //return Uint8Array.fromHex(value);
   // NOTE: Migrate this implementation to use Uint8Array.fromHex when
   // updating to TypeScript 6.
   const elements = [];
