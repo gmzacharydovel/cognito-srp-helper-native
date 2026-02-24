@@ -91,6 +91,8 @@ describe("bigint", () => {
   describe("generateRandomBigInt", () => {
     beforeEach(() => {
       jest.spyOn(globalThis.crypto, "getRandomValues").mockImplementation((array) => {
+        if (!array) return array;
+
         return new Uint8Array([array.buffer.byteLength]);
       });
     });

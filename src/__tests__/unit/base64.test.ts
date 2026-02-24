@@ -10,6 +10,8 @@ describe("base64", () => {
   describe("generateRandomBase64", () => {
     beforeEach(() => {
       jest.spyOn(globalThis.crypto, "getRandomValues").mockImplementation((array) => {
+        if (!array) return array;
+
         return new TextEncoder().encode(array.buffer.byteLength.toString());
       });
     });
