@@ -55,19 +55,19 @@ export const positiveInitiateAuthResponses: Record<string, InitiateAuthResponse>
   secretRandom: mockInitiateAuthResponseFactory({
     ChallengeParameters: {
       ...ChallengeParameters,
-      SECRET_BLOCK: new RandExp(/^[A-Za-z0-9+=/]{1724}$/).gen(),
+      SECRET_BLOCK: btoa(new RandExp(/^[A-Za-z0-9+=/]{1724}$/).gen()),
     },
   }),
   secretShort: mockInitiateAuthResponseFactory({
     ChallengeParameters: {
       ...ChallengeParameters,
-      SECRET_BLOCK: new RandExp(/^[A-Za-z0-9+=/]{1}$/).gen(),
+      SECRET_BLOCK: btoa(new RandExp(/^[A-Za-z0-9+=/]{1}$/).gen()),
     },
   }),
   secretLong: mockInitiateAuthResponseFactory({
     ChallengeParameters: {
       ...ChallengeParameters,
-      SECRET_BLOCK: new RandExp(/^[A-Za-z0-9+=/]{10000}$/).gen(),
+      SECRET_BLOCK: btoa(new RandExp(/^[A-Za-z0-9+=/]{10000}$/).gen()),
     },
   }),
 };

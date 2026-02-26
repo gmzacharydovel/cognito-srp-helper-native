@@ -39,19 +39,19 @@ export const positiveRespondToAuthChallengeResponses: Record<string, RespondToAu
   secretRandom: mockRespondToAuthChallengeResponseFactory({
     ChallengeParameters: {
       ...ChallengeParameters,
-      SECRET_BLOCK: new RandExp(/^[A-Za-z0-9+=/]{1724}$/).gen(),
+      SECRET_BLOCK: btoa(new RandExp(/^[A-Za-z0-9+=/]{1724}$/).gen()),
     },
   }),
   secretShort: mockRespondToAuthChallengeResponseFactory({
     ChallengeParameters: {
       ...ChallengeParameters,
-      SECRET_BLOCK: new RandExp(/^[A-Za-z0-9+=/]{1}$/).gen(),
+      SECRET_BLOCK: btoa(new RandExp(/^[A-Za-z0-9+=/]{1}$/).gen()),
     },
   }),
   secretLong: mockRespondToAuthChallengeResponseFactory({
     ChallengeParameters: {
       ...ChallengeParameters,
-      SECRET_BLOCK: new RandExp(/^[A-Za-z0-9+=/]{10000}$/).gen(),
+      SECRET_BLOCK: btoa(new RandExp(/^[A-Za-z0-9+=/]{10000}$/).gen()),
     },
   }),
   // SRP_B

@@ -206,15 +206,7 @@ export const signSrpSession = async (
   const message = new Uint8Array([
     ...uint8ArrayFromString(poolIdAbbr),
     ...uint8ArrayFromString(userIdForSrp),
-    ...(() => {
-      // NOTE: For some reason some of the tests don't have valid base64
-      // Does this exist only for thie tests?
-      try {
-        return uint8ArrayFromBase64(secret);
-      } catch {
-        return uint8ArrayFromString(secret);
-      }
-    })(),
+    ...uint8ArrayFromBase64(secret),
     ...uint8ArrayFromString(timestamp),
   ]);
   const passwordSignature = base64FromUint8Array(await computeHmacSha256(message, hkdfKey));
@@ -263,15 +255,7 @@ export const signSrpSessionWithDevice = async (
   const message = new Uint8Array([
     ...uint8ArrayFromString(deviceGroupKey),
     ...uint8ArrayFromString(deviceKey),
-    ...(() => {
-      // NOTE: For some reason some of the tests don't have valid base64
-      // Does this exist only for thie tests?
-      try {
-        return uint8ArrayFromBase64(secret);
-      } catch {
-        return uint8ArrayFromString(secret);
-      }
-    })(),
+    ...uint8ArrayFromBase64(secret),
     ...uint8ArrayFromString(timestamp),
   ]);
   const passwordSignature = base64FromUint8Array(await computeHmacSha256(message, hkdfKey));
