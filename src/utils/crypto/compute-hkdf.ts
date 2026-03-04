@@ -1,3 +1,4 @@
+import bigIntToPaddedHex from "@/utils/bigint/to-padded-hex";
 import uint8ArrayFromHex from "@/utils/uint8array/from-hex";
 
 import computeHmacSha256 from "./compute-hmac-sha256";
@@ -9,8 +10,8 @@ import computeHmacSha256 from "./compute-hmac-sha256";
  */
 const computeHkdf = async (props: { ikm: bigint; salt: bigint; info: Uint8Array }): Promise<Uint8Array> => {
   const { ikm, info, salt } = props;
-  const ikmHex = ikm.toString(16);
-  const saltHex = salt.toString(16);
+  const ikmHex = bigIntToPaddedHex(ikm);
+  const saltHex = bigIntToPaddedHex(salt);
   const prk = await computeHmacSha256(uint8ArrayFromHex(ikmHex), uint8ArrayFromHex(saltHex));
   const hmac = await computeHmacSha256(info, prk);
 
