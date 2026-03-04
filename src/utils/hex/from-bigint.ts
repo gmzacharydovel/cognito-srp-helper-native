@@ -15,19 +15,20 @@ import bigIntFromHex from "@/utils/bigint/from-hex";
  * 	"00" (for positive values where the most-significant-bit is set)
  *  "FF" (for negative values where the most-significant-bit is set)
  *
- * bigIntToPaddedHex(bigInteger.fromInt(-236))  === "FF14"
- * bigIntToPaddedHex(bigInteger.fromInt(20))    === "14"
+ * hexFromBigInt(-236n, true)  === "FF14"
+ * hexFromBigInt(20n, true)    === "14"
  *
- * bigIntToPaddedHex(bigInteger.fromInt(-200))  === "FF38"
- * bigIntToPaddedHex(bigInteger.fromInt(56))    === "38"
+ * hexFromBigInt(-200n, true)  === "FF38"
+ * hexFromBigInt(56n, true)    === "38"
  *
- * bigIntToPaddedHex(bigInteger.fromInt(-20))   === "EC"
- * bigIntToPaddedHex(bigInteger.fromInt(236))   === "00EC"
+ * hexFromBigInt(-20n, true)   === "EC"
+ * hexFromBigInt(236n, true)   === "00EC"
  *
- * bigIntToPaddedHex(bigInteger.fromInt(-56))   === "C8"
- * bigIntToPaddedHex(bigInteger.fromInt(200))   === "00C8"
+ * hexFromBigInt(-56n, true)   === "C8"
+ * hexFromBigInt(200n, true)   === "00C8"
  *
  * @param value Number to encode.
+ * @param normalize If the hex should be normalized, often needed for consistent hashing.
  * @returns Even-length hex string of the two's complement encoding.
  */
 export const hexFromBigInt = (value: bigint, normalize: boolean): string => {
