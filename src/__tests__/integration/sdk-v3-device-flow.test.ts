@@ -243,6 +243,7 @@ describe("SDK v3 integration - DEVICE_SRP_AUTH flow", () => {
         const signedSrpSession2 = await signSrpSession(srpSession2, initiateAuthRes2);
         const USER_ID_FOR_SRP = initiateAuthRes2.ChallengeParameters?.USER_ID_FOR_SRP;
         if (!USER_ID_FOR_SRP) throw Error("USER_ID_FOR_SRP is undefined");
+        const secretHash2 = await createSecretHash(USER_ID_FOR_SRP, clientId, secretId);
 
         const respondToAuthChallengeRes2a = await cognitoIdentityProviderClient.send(
           new RespondToAuthChallengeCommand(
@@ -250,7 +251,7 @@ describe("SDK v3 integration - DEVICE_SRP_AUTH flow", () => {
               ClientId: clientId,
               ChallengeName: "PASSWORD_VERIFIER",
               ChallengeResponses: {
-                SECRET_HASH: secretHash,
+                SECRET_HASH: secretHash2,
                 USERNAME: USER_ID_FOR_SRP,
               },
             }),
@@ -268,7 +269,7 @@ describe("SDK v3 integration - DEVICE_SRP_AUTH flow", () => {
               ClientId: clientId,
               ChallengeName: "SOFTWARE_TOKEN_MFA",
               ChallengeResponses: {
-                SECRET_HASH: secretHash,
+                SECRET_HASH: secretHash2,
                 SOFTWARE_TOKEN_MFA_CODE: otp2,
                 USERNAME: USER_ID_FOR_SRP,
               },
