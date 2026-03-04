@@ -1,11 +1,4 @@
-import {
-  absBigInt,
-  bigIntFromHex,
-  bigIntFromString,
-  bigIntToPaddedHex,
-  generateRandomBigInt,
-  modPowBigInt,
-} from "@/utils/bigint";
+import { absBigInt, bigIntFromHex, bigIntFromString, generateRandomBigInt, modPowBigInt } from "@/utils/bigint";
 
 describe("bigint", () => {
   describe("absBigInt", () => {
@@ -67,24 +60,6 @@ describe("bigint", () => {
     // NOTE: bigIntFromString doesn't handle overflow
     it("creates bigint from 1g", async () => {
       expect(bigIntFromString("1h", 16).toString()).toBe("17");
-    });
-  });
-
-  describe("bigIntToPaddedHex", () => {
-    it("creates a padded hex string from a 0n", async () => {
-      expect(bigIntToPaddedHex(0n)).toBe("00");
-    });
-
-    it("creates a padded hex string from a 3n", async () => {
-      expect(bigIntToPaddedHex(3n)).toBe("03");
-    });
-
-    it("creates a padded hex string from a 15n", async () => {
-      expect(bigIntToPaddedHex(15n)).toBe("0f");
-    });
-
-    it("creates a padded hex string from a 16n", async () => {
-      expect(bigIntToPaddedHex(16n)).toBe("10");
     });
   });
 

@@ -22,13 +22,13 @@ import {
 import {
   base64FromUint8Array,
   bigIntFromHex,
-  bigIntToPaddedHex,
   computeHkdf,
   computeHmacSha256,
   generateRandomBase64,
   generateRandomBigInt,
   hashHex,
   hashString,
+  hexFromBigInt,
   modPowBigInt,
   uint8ArrayFromBase64,
   uint8ArrayFromHex,
@@ -40,7 +40,7 @@ const generateSmallA = (): bigint => {
 };
 
 export const calculateLargeK = async (): Promise<bigint> =>
-  bigIntFromHex(await hashHex(`${bigIntToPaddedHex(N)}${bigIntToPaddedHex(G)}`));
+  bigIntFromHex(await hashHex(`${hexFromBigInt(N, true)}${hexFromBigInt(G, true)}`));
 
 const calculateLargeA = (smallA: bigint): bigint => {
   const largeA = modPowBigInt(G, smallA, N);
@@ -53,7 +53,7 @@ const calculateLargeA = (smallA: bigint): bigint => {
 };
 
 const calculateU = async (largeA: bigint, largeB: bigint): Promise<bigint> => {
-  const uHexHash = await hashHex(bigIntToPaddedHex(largeA) + bigIntToPaddedHex(largeB));
+  const uHexHash = await hashHex(hexFromBigInt(largeA, true) + hexFromBigInt(largeB, true));
   const u = bigIntFromHex(uHexHash);
 
   if (u === ZERO) {
@@ -74,7 +74,7 @@ const calculateS = async (x: bigint, largeB: bigint, smallA: bigint, u: bigint):
 };
 
 const calculateX = async (salt: bigint, usernamePasswordHash: string): Promise<bigint> => {
-  return bigIntFromHex(await hashHex(bigIntToPaddedHex(salt) + usernamePasswordHash));
+  return bigIntFromHex(await hashHex(hexFromBigInt(salt, true) + usernamePasswordHash));
 };
 
 const createTimestamp = (): string => {
@@ -132,13 +132,13 @@ export const createDeviceVerifier = async (deviceKey: string, deviceGroupKey: st
 
   // Salt
   const salt = generateRandomBigInt(16);
-  const saltHash = bigIntToPaddedHex(salt);
+  const saltHash = hexFromBigInt(salt, true);
   const saltBase64 = base64FromUint8Array(uint8ArrayFromHex(saltHash));
 
   // Password verifier
   const passwordSalted = await hashHex(saltHash + deviceHash);
   const passwordVerifier = modPowBigInt(G, bigIntFromHex(passwordSalted), N);
-  const passwordVerifierHex = bigIntToPaddedHex(passwordVerifier);
+  const passwordVerifierHex = hexFromBigInt(passwordVerifier, true);
   const passwordVerifierBase64 = base64FromUint8Array(uint8ArrayFromHex(passwordVerifierHex));
 
   return {
@@ -163,8 +163,8 @@ export const createSrpSession = (username: string, password: string, poolId: str
     password,
     isHashed,
     timestamp,
-    smallA: smallA.toString(16),
-    largeA: largeA.toString(16),
+    smallA: hexFromBigInt(smallA, false),
+    largeA: hexFromBigInt(largeA, false),
   };
 };
 

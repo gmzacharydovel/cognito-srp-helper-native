@@ -1,7 +1,6 @@
 import { ONE } from "@/constants";
-
-import absBigInt from "./abs";
-import bigIntFromHex from "./from-hex";
+import absBigInt from "@/utils/bigint/abs";
+import bigIntFromHex from "@/utils/bigint/from-hex";
 
 /**
  * Returns an unambiguous, even-length hex string of the two's complement
@@ -28,18 +27,22 @@ import bigIntFromHex from "./from-hex";
  * bigIntToPaddedHex(bigInteger.fromInt(-56))   === "C8"
  * bigIntToPaddedHex(bigInteger.fromInt(200))   === "00C8"
  *
- * @param bigInt Number to encode.
+ * @param value Number to encode.
  * @returns Even-length hex string of the two's complement encoding.
  */
-export const bigIntToPaddedHex = (bigInt: bigint): string => {
-  if (typeof bigInt !== "bigint") {
+export const hexFromBigInt = (value: bigint, normalize: boolean): string => {
+  if (typeof value !== "bigint") {
     throw new Error("Not a BigInteger");
   }
 
-  const isNegative = bigInt < 0n;
+  if (!normalize) {
+    return value.toString(16);
+  }
 
-  // Get a hex string for abs(bigInt)
-  let hexStr = absBigInt(bigInt).toString(16);
+  const isNegative = value < 0n;
+
+  // Get a hex string for abs(value)
+  let hexStr = absBigInt(value).toString(16);
 
   // Pad hex to even length if needed
   hexStr = hexStr.length % 2 !== 0 ? `0${hexStr}` : hexStr;
@@ -80,4 +83,4 @@ export const bigIntToPaddedHex = (bigInt: bigint): string => {
   return hexStr;
 };
 
-export default bigIntToPaddedHex;
+export default hexFromBigInt;
